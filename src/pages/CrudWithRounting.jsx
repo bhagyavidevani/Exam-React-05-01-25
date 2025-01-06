@@ -1,7 +1,7 @@
 import { useEffect, useState } from "react";
 import Header from "../Component/Header";
 import { useNavigate } from "react-router";
-import { Card, Button } from "react-bootstrap";
+import { Card, Button, Col, Row } from "react-bootstrap";
 import {FaEdit,  FaEye, FaTrash } from "react-icons/fa";
 
 function CrudWithRouting() {  // Changed name from Rounting to Routing
@@ -23,9 +23,9 @@ function CrudWithRouting() {  // Changed name from Rounting to Routing
     navigate(`/ShowBlog/${id}`);
     // console.log(id);
  };
-
    const handelDelete =(id)=>{
     let updateData =blogData.filter((blog)=>blog.id != id);
+    localStorage.setItem("blogData", JSON.stringify(updateData));
     setBlogData(updateData);
    }
 
@@ -40,9 +40,10 @@ function CrudWithRouting() {  // Changed name from Rounting to Routing
         <div className="blog-display">
           <h2 className="text-center py-3 fs-1 fw-bold">Blogs</h2>
           <div className="container d-flex">
-            {blogData.map((v) => {
+           <Row>
+           {blogData.map((v) => {
               return (
-                <div key={v.id} className="ms-3">
+                <Col key={v.id} className="ms-2 mt-3 mb-3">
                   <Card style={{ width: '18rem' }} className="border-0 p-2">
                     <img
                       src={v.imageUrl}
@@ -61,9 +62,10 @@ function CrudWithRouting() {  // Changed name from Rounting to Routing
                       <Button onClick={() => handelDelete(v.id)}><FaTrash/></Button>
                     </Card.Body>
                   </Card>
-                </div>
+                </Col>
               );
             })}
+           </Row>
           </div>
         </div>
       </div>

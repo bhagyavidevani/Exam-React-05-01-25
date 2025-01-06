@@ -66,11 +66,11 @@ function AddBlog() {
             <Form onSubmit={handleSubmit}>
               <Form.Group as={Row}>
                 <Col className="mb-3">
-                  <Form.Label className="fw-semibold fs-5">Full Name:</Form.Label>
+                  <Form.Label className="fw-semibold fs-5">Author Name:</Form.Label>
                   <Form.Control
                     type="text"
                     name="fname"
-                    placeholder="First Name"
+                    placeholder="Author Name"
                     value={formData.fname}
                     onChange={handleChange}
                   />

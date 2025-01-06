@@ -37,7 +37,7 @@ function ShowBlog() {
             <Card.Body>
               <h3 className="fs-2 text-black">{blog.titlename}</h3>
               <p>{blog.describe}</p>
-              <p><strong>Name:</strong> {blog.fname}</p>
+              <p><strong>Author:</strong> {blog.fname}</p>
               <p><strong>DOB:</strong> {blog.DOB}</p>
               <p><strong>Time:</strong> {blog.Time}</p>
             </Card.Body>

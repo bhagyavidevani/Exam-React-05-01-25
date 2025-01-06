@@ -62,7 +62,7 @@ function Edit() {
               <Form onSubmit={handleSubmit}>
                 <Form.Group as={Row}>
                   <Col className="mb-3">
-                    <Form.Label className="fw-semibold fs-5">Full Name:</Form.Label>
+                    <Form.Label className="fw-semibold fs-5">Author Name:</Form.Label>
                     <Form.Control
                       type="text"
                       name="fname"
@@ -134,7 +134,7 @@ function Edit() {
                 </Form.Group>
 
                 <div className="text-center">
-                  <Button type="updata" className="mt-3">Updata</Button>
+                  <Button type="updata" className="mt-3">Update</Button>
                 </div>
               </Form>
             </Row>
