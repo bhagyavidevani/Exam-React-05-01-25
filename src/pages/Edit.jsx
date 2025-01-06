@@ -44,13 +44,11 @@ function Edit() {
   useEffect(() => {
     let data = JSON.parse(localStorage.getItem('blogData')) || []; //local storage thi badha data avya
     data.map((v)=>{ 
-      if(v.id == id){  
+      if(v.id == id){ 
         console.log(v);
         setInputForm(v);
       }
     })
-    
-    
   }, [id]);
 
   return (

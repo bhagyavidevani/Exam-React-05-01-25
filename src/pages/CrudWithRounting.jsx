@@ -35,7 +35,7 @@ function CrudWithRouting() {  // Changed name from Rounting to Routing
 
   return (
     <>
-      <Header background="#f1cfc6" />
+      <Header background="#BF97C5" />
       <div className="banner">
         <div className="blog-display">
           <h2 className="text-center py-3 fs-1 fw-bold">Blogs</h2>
