@@ -2,12 +2,41 @@ import { useEffect, useState } from "react";
 import Header from "../Component/Header";
 import { useNavigate } from "react-router";
 import { Card, Button, Col, Row } from "react-bootstrap";
-import {FaEdit,  FaEye, FaTrash } from "react-icons/fa";
+import {FaArrowDown, FaArrowUp, FaEdit,  FaEye, FaSearch, FaTrash } from "react-icons/fa";
 
 function CrudWithRouting() {  // Changed name from Rounting to Routing
 
   const [blogData, setBlogData] = useState([]);
   const navigate = useNavigate();
+  const [searchVal, setSearchVal] = useState("");
+
+  const handelAsc=()=>{
+    let allBlog=JSON.parse(localStorage.getItem('blogData'));
+    let updateData=allBlog.sort((a,b)=>{
+      return a.DOB.localeCompare(b.DOB)
+    })
+    setBlogData(updateData)
+  }
+
+  const handelDesc=()=>{
+    let allBlog=JSON.parse(localStorage.getItem("blogData"));
+    let updateData=allBlog.sort((a,b)=>{
+      return b.DOB.localeCompare(a.DOB)
+    })
+    setBlogData(updateData)
+  }
+  const handelSearch=()=>{
+    let allBlogs=JSON.parse(localStorage.getItem('blogData'));
+    console.log(allBlogs)
+    let updataSearch=allBlogs.filter((blog)=>{
+      return(
+        blog.fname.toLowerCase().includes(searchVal.toLowerCase())
+      );
+    });
+   setBlogData(updataSearch)
+   console.log(updataSearch)
+   setSearchVal("")
+  }
 
   useEffect(() => {
     let data = localStorage.getItem('blogData');
@@ -33,10 +62,24 @@ function CrudWithRouting() {  // Changed name from Rounting to Routing
     navigate(`/edit/${id}`);
   };
 
+  const isNoCards = blogData.length === 0;
   return (
     <>
       <Header background="#BF97C5" />
-      <div className="banner">
+      <div className={`banner ${isNoCards ? "no-cards" : ""}`}>
+      <div className="d-flex justify-content-center pt-3">
+          <input type="text" value={searchVal} onChange={(e)=>setSearchVal(e.target.value)}className="rounded-0"/>
+          
+          <Button onClick={handelSearch} className="rounded-0">
+            <FaSearch />
+          </Button>&nbsp;&nbsp;&nbsp;&nbsp;
+          <Button onClick={handelAsc}>
+            <FaArrowUp />
+          </Button>&nbsp;&nbsp;&nbsp;&nbsp;
+          <Button onClick={handelDesc}>
+            <FaArrowDown />
+          </Button>{" "}
+        </div>
         <div className="blog-display">
           <h2 className="text-center py-3 fs-1 fw-bold">Blogs</h2>
           <div className="container d-flex">
@@ -44,11 +87,11 @@ function CrudWithRouting() {  // Changed name from Rounting to Routing
            {blogData.map((v) => {
               return (
                 <Col key={v.id} className="ms-2 mt-3 mb-3">
-                  <Card style={{ width: '18rem' }} className="border-0 p-2">
+                  <Card style={{ width: '18rem' }} className="card border-0 p-2">
                     <img
                       src={v.imageUrl}
                       alt="Blog Image"
-                      style={{ width: '260px', height: '260px', objectFit: 'cover' }} // Corrected typo: "centain" to "contain"
+                      style={{ width: '260px', height: '260px', objectFit: 'cover' }} 
                       className="rounded m-1"
                     />
                     <Card.Body>
